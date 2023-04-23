@@ -60,7 +60,7 @@ def main():
         from assembler import assemble
 
         if not args.output:
-            args.output = "program.bin"
+            args.output = args.assemble.replace(".asm", ".bin")
 
         assemble(args.assemble, args.output)
 
