@@ -1,5 +1,6 @@
-from cpu import CPU
+from cpu import CPU, Opcodes
 import argparse
+from pprint import pprint
 
 
 def main():
@@ -61,7 +62,7 @@ def main():
         if not args.output:
             args.output = "program.txt"
 
-        assemble(args.program, args.output)
+        assemble(args.assemble, args.output)
 
     if args.program:
         with open(args.program, "r") as f:
