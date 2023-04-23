@@ -60,7 +60,7 @@ def main():
         from assembler import assemble
 
         if not args.output:
-            args.output = "program.txt"
+            args.output = "program.bin"
 
         assemble(args.assemble, args.output)
 
