@@ -79,6 +79,10 @@ def assemble(input_file, output_file, ram_size=16):
                 hex(code)[2:].zfill(2) + "\n"
             )  # Write as two-digit hex with leading zeros
 
+        # fill the rest of the RAM with zeros
+        for _ in range(ram_size - len(instructions) - len(variable_addrs)):
+            f.write("00" + "\n")
+
         # Write the addresses of variables to the end of the file
         for addr in reversed(variable_addrs):
             f.write(hex(addr)[2:].zfill(2) + "\n")
