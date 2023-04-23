@@ -73,19 +73,17 @@ def assemble(input_file, output_file, ram_size=16):
         raise SyntaxError("Undefined labels: %s" % ", ".join(undefined_labels))
 
     # Write the machine code to the output file
-    with open(output_file, "w") as f:
-        for code in instructions:
-            f.write(
-                hex(code)[2:].zfill(2) + "\n"
-            )  # Write as two-digit hex with leading zeros
+    with open(output_file, "wb") as f:
+        # Convert the list of integers to bytes and write to the file
+        f.write(bytes(instructions))
 
-        # fill the rest of the RAM with zeros
+        # Fill the rest of the RAM with zeros
         for _ in range(ram_size - len(instructions) - len(variable_addrs)):
-            f.write("00" + "\n")
+            f.write(bytes([0]))
 
         # Write the addresses of variables to the end of the file
         for addr in reversed(variable_addrs):
-            f.write(hex(addr)[2:].zfill(2) + "\n")
+            f.write(bytes([addr]))
 
     print("Assembly complete.")
 

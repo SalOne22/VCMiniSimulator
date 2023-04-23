@@ -65,8 +65,8 @@ def main():
         assemble(args.assemble, args.output)
 
     if args.program:
-        with open(args.program, "r") as f:
-            program = [int(line, 16) for line in f.readlines()]
+        with open(args.program, "rb") as f:
+            program = f.read()
 
             cpu.load(program)
             cpu.run()
